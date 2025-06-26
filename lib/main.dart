@@ -29,18 +29,24 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-  int _counter = 0;
+  int counter = 0;
 
   void incrementCounter() {
     setState(() {
-      _counter++;
+      counter++;
     });
   }
 
 
   void decrementCounter() {
     setState(() {
-      _counter--;
+      counter--;
+    });
+  }
+
+  void resetCounter() {
+    setState(() {
+      counter = 0;
     });
   }
 
@@ -54,7 +60,7 @@ class _MyHomePageState extends State<MyHomePage> {
       ),
       body: Center(
         child: Text(
-          '$_counter',
+          '$counter',
           style: Theme.of(context).textTheme.headlineMedium,
         ),
       ),
@@ -66,6 +72,11 @@ class _MyHomePageState extends State<MyHomePage> {
             onPressed: incrementCounter,
             tooltip: 'Decrement',
             child: const Icon(Icons.remove),
+          ),
+          FloatingActionButton(
+            onPressed: resetCounter,
+            tooltip: 'Reset',
+            child: const Icon(Icons.restart_alt_rounded),
           ),
           FloatingActionButton(
             onPressed: incrementCounter,
