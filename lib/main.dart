@@ -16,33 +16,37 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.blue.shade700),
       ),
-      home: const MyHomePage(title: 'Counter'),
+      home: const MyHomePage(),
     );
   }
 }
 
 class MyHomePage extends StatefulWidget {
-  const MyHomePage({super.key, required this.title});
-
-  final String title;
+  const MyHomePage({super.key});
 
   @override
   State<MyHomePage> createState() => _MyHomePageState();
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-  int _counter = 0;
+  int counter = 0;
 
   void incrementCounter() {
     setState(() {
-      _counter++;
+      counter++;
     });
   }
 
 
   void decrementCounter() {
     setState(() {
-      _counter--;
+      counter--;
+    });
+  }
+
+  void resetCounter() {
+    setState(() {
+      counter = 0;
     });
   }
 
@@ -52,11 +56,11 @@ class _MyHomePageState extends State<MyHomePage> {
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Theme.of(context).colorScheme.inversePrimary,
-        title: Text(widget.title),
+        title: Text('Counter App'),
       ),
       body: Center(
         child: Text(
-          '$_counter',
+          '$counter',
           style: Theme.of(context).textTheme.headlineMedium,
         ),
       ),
@@ -68,6 +72,11 @@ class _MyHomePageState extends State<MyHomePage> {
             onPressed: incrementCounter,
             tooltip: 'Decrement',
             child: const Icon(Icons.remove),
+          ),
+          FloatingActionButton(
+            onPressed: resetCounter,
+            tooltip: 'Reset',
+            child: const Icon(Icons.restart_alt_rounded),
           ),
           FloatingActionButton(
             onPressed: incrementCounter,
